@@ -18,9 +18,9 @@ row_id = 0
 col_id = 0
 count = 0
 
-for row in soup.find_all('tr', class_='holdingRow_stockItemHover__mmKoy'):
+for row in soup.find_all('tr', class_='holdingRow_stockItemHover__GWd5z'):
     symbol = row['data-holding-parent'].strip()
-
+    # print("vuvek")
     if row.a != None:
         name = row.a.contents[0].string.replace('\n     ', "")
         quantity = row.span.contents[0].string.replace('\n     ', "").replace('shares', "")

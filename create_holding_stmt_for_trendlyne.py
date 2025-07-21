@@ -20,13 +20,14 @@ count = 0
 
 for row in soup.find_all('tr', class_='holdingRow_stockItemHover__GWd5z'):
     symbol = row['data-holding-parent'].strip()
-    # print("vuvek")
+
     if row.a != None:
         name = row.a.contents[0].string.replace('\n     ', "")
         quantity = row.span.contents[0].string.replace('\n     ', "").replace('shares', "")
         avg_buy_price_raw = row.findNext('span').findNext('span').findNext('span')
-        avg_buy_price_str = avg_buy_price_raw.contents[0].replace('\n     ', "").replace('Avg. ₹', "")
-        avg_buy_price_float = float(avg_buy_price_str.replace(',', ''))
+        # print(avg_buy_price_raw)
+        avg_buy_price_str = avg_buy_price_raw.contents[0].replace('\n     ', "")
+        avg_buy_price_float = float(avg_buy_price_str.split("₹")[1].replace(',', ''))
 
         row_values = symbol, quantity, avg_buy_price_float
         worksheet.append(row_values)
